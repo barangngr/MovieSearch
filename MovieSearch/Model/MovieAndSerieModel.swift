@@ -10,19 +10,19 @@ import Foundation
 
 public struct MovieAndSerieModel: Codable{
     
-    public var title: String?
-    public var year: String?
+    public var Title: String?
+    public var Year: String?
     public var imdbID: String?
-    public var type: String?
-    public var poster: String?
+    public var `Type`: String?
+    public var Poster: String?
   
     
-    public init(title: String?, year: String?, imdbID: String?, type: String?, poster: String?){
-        self.title = title
-        self.year = year
+    public init(Title: String?, Year: String?, imdbID: String?, Type: String?, Poster: String?){
+        self.Title = Title
+        self.Year = Year
         self.imdbID = imdbID
-        self.type = type
-        self.poster = poster
+        self.Type = Type
+        self.Poster = Poster
       
     }
     

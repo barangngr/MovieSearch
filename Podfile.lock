@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
+  - IQKeyboardManagerSwift (6.4.2)
   - Kingfisher (5.7.1)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
@@ -10,6 +11,7 @@ PODS:
   - SwiftyBeaver (1.7.1)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - Kingfisher (~> 5.0)
   - Moya (~> 13.0)
   - SwiftyBeaver
@@ -17,6 +19,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - IQKeyboardManagerSwift
     - Kingfisher
     - Moya
     - Result
@@ -24,11 +27,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  IQKeyboardManagerSwift: 79a3ec200dfb41cb66a89b8575417b5378107c5d
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
 
-PODFILE CHECKSUM: 253cf500ee1251d521b3984b74fb4b72986330ad
+PODFILE CHECKSUM: 2052b0093c849294b0b34934a2970fbc22561dfc
 
 COCOAPODS: 1.5.3

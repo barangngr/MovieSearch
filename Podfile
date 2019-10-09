@@ -10,6 +10,6 @@ target 'MovieSearch' do
  pod 'Moya', '~> 13.0'
  pod 'SwiftyBeaver'
  pod 'Kingfisher', '~> 5.0'
- 
+ pod 'IQKeyboardManagerSwift'
 
 end

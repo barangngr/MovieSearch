@@ -20,6 +20,9 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideNavigationBar()
+        setNavBarBackBtn()
+        viewModel.delegete = self
     }
     
     @IBAction func segmentAction(_ sender: UISegmentedControl) {
@@ -39,3 +42,14 @@ class SearchViewController: UIViewController {
     }
 }
 
+
+
+extension SearchViewController: SearchViewModelDelegete{
+    func pushNextView(view: UIViewController) {
+        navigationController?.pushViewController(view, animated: true)
+    }
+    
+    func sendAlertView(view: UIAlertController) {
+        present(view, animated: true, completion: nil)
+    }
+}

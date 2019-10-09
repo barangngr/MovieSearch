@@ -12,5 +12,8 @@ import Moya
 
 let service = MoyaProvider<MetroCityCardService.BusinessesProvider>()
 
-
+struct StoryBoards {
+    static var Main: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    //Designed for multiple storyboard.
+}
 
