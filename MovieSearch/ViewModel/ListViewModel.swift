@@ -12,11 +12,17 @@ import UIKit
 
 protocol ListViewModelDelegete {
     func pushNextView(view:UIViewController)
+    func reloadTableView()
 }
 
 
 class ListViewModel{
     var list = [MovieAndSerieModel]()
+    var title = ""
+    var year = ""
+    var type = ""
+    var page = 2
+    var totalResult = 0
     var delegete: ListViewModelDelegete?
 }
 
@@ -27,10 +33,31 @@ extension ListViewModel{
         vc.viewModel.id = list[index].imdbID!
         delegete?.pushNextView(view: vc)
     }
+    
+    func getPagination(row: Int){
+        let lastItem = list.count-1
+        if row == lastItem && lastItem <= totalResult-2 {
+            getNextPage(page: page)
+            page += 1
+        }
+    }
 }
 
 
 //MARK: Network Functions
 extension ListViewModel{
-    
+    func getNextPage(page: Int){
+        service.request(.getSearch(title: title, year: year, type: type, page: String(page))) { (result) in
+            switch result{
+            case .success(let response):
+                let data = try! JSONDecoder().decode(SearchResponseModel.self, from: response.data)
+                for item in data.Search!{
+                    self.list.append(item)
+                }
+                self.delegete?.reloadTableView()
+            case .failure(let error):
+                logger.error("Error \(error)")
+            }
+        }
+    }
 }

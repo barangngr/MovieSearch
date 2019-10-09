@@ -41,8 +41,8 @@ enum MetroCityCardService {
         
         var task: Task{
             switch self {
-            case let .getSearch(paramTitle, paramYear, paramType):
-                return .requestParameters(parameters: ["apikey" : apikey, "s" : paramTitle, "y" : paramYear, "type" : paramType], encoding: URLEncoding.queryString)
+            case let .getSearch(paramTitle, paramYear, paramType, paramPage):
+                return .requestParameters(parameters: ["apikey" : apikey, "s" : paramTitle, "y" : paramYear, "type" : paramType, "page" : paramPage], encoding: URLEncoding.queryString)
             case .getDetail(let param):
                 return .requestParameters(parameters: ["apikey" : apikey, "i" : param, "plot" : "full"], encoding: URLEncoding.queryString)
             }
@@ -52,7 +52,7 @@ enum MetroCityCardService {
             return ["":""]
         }
         
-        case getSearch(title: String, year: String, type: String)
+        case getSearch(title: String, year: String, type: String, page: String)
         case getDetail(id: String)
     }
 }

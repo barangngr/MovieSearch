@@ -21,7 +21,7 @@ class DetailViewModel{
 
 extension DetailViewModel{
     func changeData(data: DetailResponseModel){
-        let newData = DetailResponseModel(Title: data.Title!, Released: "Released: \(data.Released!)", Runtime: "Runtime: \(data.Runtime!)", Genre: "Genre: \(data.Genre!)", Director: "Director: \(data.Director!)", Writer: "Writer: \(data.Writer!)", Actors: "Actors: \(data.Actors!)", Plot: "Plot: \(data.Plot!)", Country: "Country: \(data.Country!)", Poster: data.Poster!, imdbRating: "Imdb: \(data.imdbRating!)")
+        let newData = DetailResponseModel(Title: data.Title!, Released: "Released: \(data.Released!)", Runtime: "Runtime: \(data.Runtime!)", Genre: "Genre: \(data.Genre!)", Director: "Director: \(data.Director!)", Writer: "Writer: \(data.Writer!)", Actors: "Actors: \(data.Actors!)", Plot: data.Plot!, Country: "Country: \(data.Country!)", Poster: data.Poster!, imdbRating: "Imdb: \(data.imdbRating!)")
         self.delegete?.updateView(data: newData)
     }
 }

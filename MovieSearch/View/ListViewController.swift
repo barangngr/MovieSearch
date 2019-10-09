@@ -48,10 +48,18 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         viewModel.pushDetailView(index: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.getPagination(row: indexPath.row)
+    }
+    
 }
 
 
 extension ListViewController: ListViewModelDelegete{
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+    
     func pushNextView(view: UIViewController) {
         navigationController?.pushViewController(view, animated: true)
     }

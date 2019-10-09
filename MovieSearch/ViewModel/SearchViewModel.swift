@@ -33,7 +33,7 @@ extension SearchViewModel{
         if segmentIndex == 1 {
             segment = "series"
         }
-        getSearch(title: title!, year: year!, type: segment)
+        getSearch(title: title!, year: year!, type: segment, page: "1")
     }
     
     func controlSlider(slider: UISlider, sliderText: UILabel){
@@ -57,17 +57,20 @@ extension SearchViewModel{
 
 //MARK: Network Functions
 extension SearchViewModel{
-    func getSearch(title: String, year: String, type: String){
-        service.request(.getSearch(title: title, year: year, type: type)) { (result) in
+    func getSearch(title: String, year: String, type: String, page: String){
+        service.request(.getSearch(title: title, year: year, type: type, page: page)) { (result) in
             switch result{
             case .success(let response):
                 if let json = try! JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any]{
                     if let names = json["Response"] as? String{
                         if names == "True"{
                             let data = try! JSONDecoder().decode(SearchResponseModel.self, from: response.data)
-                            print(data.totalResults!)
                             let vc = StoryBoards.Main.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
                             vc.viewModel.list = data.Search!
+                            vc.viewModel.title = title
+                            vc.viewModel.year = year
+                            vc.viewModel.type = type
+                            vc.viewModel.totalResult = Int(data.totalResults!)!
                             self.delegete?.pushNextView(view: vc)
                         }else{
                             let error = json["Error"] as? String
