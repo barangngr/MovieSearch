@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -126,26 +127,116 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DTB-EF-80z">
-                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <rect key="frame" x="0.0" y="147" width="414" height="749"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="5Gy-Cv-ojp" id="rAd-8t-Jny"/>
                                     <outlet property="delegate" destination="5Gy-Cv-ojp" id="nJj-gw-D5k"/>
                                 </connections>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DGw-SZ-wKZ">
+                                <rect key="frame" x="10.5" y="89" width="393" height="29"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eD-pW-gGT">
+                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Year">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtons:" destination="5Gy-Cv-ojp" eventType="touchUpInside" id="D3A-hp-hoY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-II-m50">
+                                        <rect key="frame" x="133.5" y="0.0" width="126" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Type">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtons:" destination="5Gy-Cv-ojp" eventType="touchUpInside" id="lhJ-ax-qPk"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Result: 1529" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-kU-Iiq">
+                                        <rect key="frame" x="267.5" y="8" width="125.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sharlock Homes Sharlock Homes Sh" borderStyle="roundedRect" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Not-u4-I7g">
+                                <rect key="frame" x="39.5" y="47" width="315" height="34"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchButtonImage-1" translatesAutoresizingMaskIntoConstraints="NO" id="X5e-Ah-Kyy">
+                                <rect key="frame" x="358" y="49.5" width="51" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="LjH-S2-5Dc"/>
+                                    <constraint firstAttribute="height" constant="29" id="UJS-FH-WUe"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tgH-ep-6vE">
+                                <rect key="frame" x="31" y="131" width="352" height="0.0"/>
+                                <subviews>
+                                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1969" minValue="1919" maxValue="2019" translatesAutoresizingMaskIntoConstraints="NO" id="zvF-rF-FKg">
+                                        <rect key="frame" x="-54.5" y="0.0" width="355.5" height="1"/>
+                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderAction:" destination="5Gy-Cv-ojp" eventType="valueChanged" id="01s-CX-rmH"/>
+                                        </connections>
+                                    </slider>
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c7I-dZ-N3i">
+                                        <rect key="frame" x="0.0" y="0.0" width="246.5" height="1"/>
+                                        <segments>
+                                            <segment title="Movie"/>
+                                            <segment title="Series"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentAction:" destination="5Gy-Cv-ojp" eventType="valueChanged" id="TvD-UR-TlQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zvF-rF-FKg" firstAttribute="width" secondItem="tgH-ep-6vE" secondAttribute="width" id="CLj-cC-orP"/>
+                                    <constraint firstItem="c7I-dZ-N3i" firstAttribute="width" secondItem="tgH-ep-6vE" secondAttribute="width" multiplier="0.7" id="rIz-aN-Jg0"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="K28-Rr-HZQ" firstAttribute="trailing" secondItem="DTB-EF-80z" secondAttribute="trailing" id="1wb-h6-fap"/>
+                            <constraint firstItem="tgH-ep-6vE" firstAttribute="centerX" secondItem="DGw-SZ-wKZ" secondAttribute="centerX" id="3jS-J0-VzQ"/>
+                            <constraint firstItem="DTB-EF-80z" firstAttribute="top" secondItem="tgH-ep-6vE" secondAttribute="bottom" constant="16" id="9PD-fO-FpX"/>
                             <constraint firstAttribute="bottom" secondItem="DTB-EF-80z" secondAttribute="bottom" id="CTI-ID-gqX"/>
                             <constraint firstItem="DTB-EF-80z" firstAttribute="leading" secondItem="K28-Rr-HZQ" secondAttribute="leading" id="CiZ-Ls-7hx"/>
-                            <constraint firstItem="DTB-EF-80z" firstAttribute="top" secondItem="K28-Rr-HZQ" secondAttribute="top" constant="48" id="J9j-qU-a2M"/>
+                            <constraint firstItem="tgH-ep-6vE" firstAttribute="width" secondItem="DTB-EF-80z" secondAttribute="width" multiplier="0.85" id="DAC-zl-LgW"/>
+                            <constraint firstItem="Not-u4-I7g" firstAttribute="centerX" secondItem="DGw-SZ-wKZ" secondAttribute="centerX" constant="-10" id="ESL-ai-4CA"/>
+                            <constraint firstItem="Not-u4-I7g" firstAttribute="top" secondItem="K28-Rr-HZQ" secondAttribute="top" constant="3" id="J07-WF-1zG"/>
+                            <constraint firstItem="tgH-ep-6vE" firstAttribute="top" secondItem="DGw-SZ-wKZ" secondAttribute="bottom" constant="13" id="KBY-v0-zE3"/>
+                            <constraint firstItem="X5e-Ah-Kyy" firstAttribute="centerY" secondItem="Not-u4-I7g" secondAttribute="centerY" id="aIa-5A-Tsu"/>
+                            <constraint firstItem="DGw-SZ-wKZ" firstAttribute="width" secondItem="DTB-EF-80z" secondAttribute="width" multiplier="0.95" id="bgg-mM-e1X"/>
+                            <constraint firstItem="X5e-Ah-Kyy" firstAttribute="leading" secondItem="Not-u4-I7g" secondAttribute="trailing" constant="3.5" id="cjZ-bM-1a1"/>
+                            <constraint firstItem="DGw-SZ-wKZ" firstAttribute="centerX" secondItem="DTB-EF-80z" secondAttribute="centerX" id="kBy-4T-WbQ"/>
+                            <constraint firstItem="Not-u4-I7g" firstAttribute="width" secondItem="DGw-SZ-wKZ" secondAttribute="width" multiplier="0.8" id="vCh-pg-s6J"/>
+                            <constraint firstItem="tgH-ep-6vE" firstAttribute="centerX" secondItem="K28-Rr-HZQ" secondAttribute="centerX" id="xOi-g3-dft"/>
+                            <constraint firstItem="DGw-SZ-wKZ" firstAttribute="top" secondItem="K28-Rr-HZQ" secondAttribute="top" constant="45" id="xcU-CQ-wbF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K28-Rr-HZQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="fZO-v8-1ek"/>
                     <connections>
+                        <outlet property="searchImage" destination="X5e-Ah-Kyy" id="GAo-M2-ONg"/>
                         <outlet property="tableView" destination="DTB-EF-80z" id="HeX-oQ-g3j"/>
+                        <outlet property="titleTextField" destination="Not-u4-I7g" id="3rj-xe-25T"/>
+                        <outlet property="totalResultLabel" destination="BZX-kU-Iiq" id="60F-nm-jAH"/>
+                        <outlet property="typeButtonOutlet" destination="9zh-II-m50" id="k9v-Ly-WyA"/>
+                        <outlet property="typeSegmentOutlet" destination="c7I-dZ-N3i" id="Yy2-Z0-bS7"/>
+                        <outlet property="yearButtonOutlet" destination="4eD-pW-gGT" id="yAB-WH-TBF"/>
+                        <outlet property="yearSliderOutlet" destination="zvF-rF-FKg" id="TvO-eG-LgZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqs-Xt-l2H" sceneMemberID="firstResponder"/>
@@ -299,5 +390,6 @@
     </scenes>
     <resources>
         <image name="mainViewImage" width="1181" height="1181"/>
+        <image name="searchButtonImage-1" width="50" height="50"/>
     </resources>
 </document>

@@ -12,6 +12,13 @@ import Kingfisher
 class ListViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var yearButtonOutlet: UIButton!
+    @IBOutlet var typeButtonOutlet: UIButton!
+    @IBOutlet var totalResultLabel: UILabel!
+    @IBOutlet var yearSliderOutlet: UISlider!
+    @IBOutlet var typeSegmentOutlet: UISegmentedControl!
+    @IBOutlet var searchImage: UIImageView!
     
     lazy var viewModel = ListViewModel()
     
@@ -22,6 +29,18 @@ class ListViewController: UIViewController{
         viewModel.delegete = self
     }
     
+    @IBAction func filterButtons(_ sender: UIButton) {
+        viewModel.selectObject(button: sender, objectSlider: yearSliderOutlet, objectSegment: typeSegmentOutlet)
+    
+    }
+    
+    @IBAction func sliderAction(_ sender: UISlider) {
+        yearButtonOutlet.setTitle(String(Int(sender.value)), for: .normal)
+    }
+    
+    @IBAction func segmentAction(_ sender: UISegmentedControl) {
+        viewModel.controlTypeButton(button: typeButtonOutlet, segment: sender)
+    }
 }
 
 

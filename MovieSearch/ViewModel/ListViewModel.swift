@@ -24,6 +24,8 @@ class ListViewModel{
     var page = 2
     var totalResult = 0
     var delegete: ListViewModelDelegete?
+    var indexForSlider = true
+    var indexForSegment = true
 }
 
 
@@ -41,6 +43,32 @@ extension ListViewModel{
             page += 1
         }
     }
+    
+    func selectObject(button: UIButton, objectSlider: UISlider, objectSegment: UISegmentedControl){
+        if button.tag == 1{
+            controlIsHidden(object: objectSlider, objectBool: &indexForSlider)
+            button.setTitle("Year", for: .normal)
+        }else{
+            controlIsHidden(object: objectSegment, objectBool: &indexForSegment)
+            button.setTitle("Type", for: .normal)
+        }
+    }
+    
+    func controlIsHidden<T: UIView>(object: T, objectBool: inout Bool){
+        objectBool = objectBool ? false : true
+        object.isHidden = objectBool
+    }
+    
+    func controlTypeButton(button: UIButton, segment: UISegmentedControl){
+        if segment.selectedSegmentIndex == 0 {
+            button.setTitle("Movie", for: .normal)
+        }else{
+            button.setTitle("Series", for: .normal)
+        }
+    }
+    
+    
+    
 }
 
 
