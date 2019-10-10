@@ -23,14 +23,14 @@ enum MetroCityCardService {
         
         var path: String{
             switch self {
-            case .getSearch, .getDetail:
+            case .getSearch, .getDetail, .getSearchWithoutType:
                 return ""
             }
         }
         
         var method: Moya.Method{
             switch self {
-            case .getSearch, .getDetail:
+            case .getSearch, .getDetail, .getSearchWithoutType:
                 return .get
             }
         }
@@ -43,8 +43,11 @@ enum MetroCityCardService {
             switch self {
             case let .getSearch(paramTitle, paramYear, paramType, paramPage):
                 return .requestParameters(parameters: ["apikey" : apikey, "s" : paramTitle, "y" : paramYear, "type" : paramType, "page" : paramPage], encoding: URLEncoding.queryString)
+            case let .getSearchWithoutType(paramTitle, paramYear, paramPage):
+                return .requestParameters(parameters: ["apikey" : apikey, "s" : paramTitle, "y" : paramYear, "page" : paramPage], encoding: URLEncoding.queryString)
             case .getDetail(let param):
                 return .requestParameters(parameters: ["apikey" : apikey, "i" : param, "plot" : "full"], encoding: URLEncoding.queryString)
+                
             }
         }
         
@@ -53,6 +56,7 @@ enum MetroCityCardService {
         }
         
         case getSearch(title: String, year: String, type: String, page: String)
+        case getSearchWithoutType(title: String, year: String, page: String)
         case getDetail(id: String)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MovieAndSerieModel: Codable{
+public struct MovieAndSerieResponseModel: Codable{
     
     public var Title: String?
     public var Year: String?

@@ -27,6 +27,11 @@ class ListViewController: UIViewController{
         tableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: "ListCell")
         tableView.separatorStyle = .none
         viewModel.delegete = self
+        viewModel.setUI()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        searchImage.isUserInteractionEnabled = true
+        searchImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     @IBAction func filterButtons(_ sender: UIButton) {
@@ -40,6 +45,13 @@ class ListViewController: UIViewController{
     
     @IBAction func segmentAction(_ sender: UISegmentedControl) {
         viewModel.controlTypeButton(button: typeButtonOutlet, segment: sender)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+        let param = MovieAndSerieRequeestModel(title: titleTextField.text, year: yearButtonOutlet.titleLabel?.text, type: typeButtonOutlet.titleLabel?.text, page: 1)
+        viewModel.params = param
+        viewModel.searcAgain(param: param)
+        view.endEditing(true)
     }
 }
 
@@ -67,14 +79,26 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         viewModel.pushDetailView(index: indexPath.row)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.getPagination(row: indexPath.row)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offSetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        viewModel.readyForFetch(offSetY: offSetY, contentHeight: contentHeight, scrollViewHeight: scrollView.contentSize.height)
     }
     
 }
 
 
 extension ListViewController: ListViewModelDelegete{
+    func sendAlertView(view: UIAlertController) {
+        present(view, animated: true, completion: nil)
+    }
+    
+    func updateUI(data: MovieAndSerieRequeestModel, totalResult: Int) {
+        titleTextField.text = data.title!
+        yearButtonOutlet.setTitle(data.year!, for: .normal)
+        totalResultLabel.text = "Total Result: \(String(totalResult))"
+    }
+    
     func reloadTableView() {
         tableView.reloadData()
     }

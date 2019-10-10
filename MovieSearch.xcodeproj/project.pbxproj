@@ -17,6 +17,7 @@
 		7914332C234E28FA006EAA37 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914332B234E28FA006EAA37 /* DetailViewController.swift */; };
 		7914332E234E2B35006EAA37 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914332D234E2B35006EAA37 /* DetailViewModel.swift */; };
 		79143330234E3051006EAA37 /* DetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914332F234E3051006EAA37 /* DetailResponseModel.swift */; };
+		79143332234F438C006EAA37 /* MovieAndSerieRequeestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79143331234F438C006EAA37 /* MovieAndSerieRequeestModel.swift */; };
 		7938DA3B234D1C0F0031149A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA3A234D1C0F0031149A /* AppDelegate.swift */; };
 		7938DA3D234D1C0F0031149A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA3C234D1C0F0031149A /* SceneDelegate.swift */; };
 		7938DA3F234D1C0F0031149A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA3E234D1C0F0031149A /* SearchViewController.swift */; };
@@ -26,7 +27,7 @@
 		7938DA59234DBA1C0031149A /* SUNDAY  Personal use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7938DA58234DBA1C0031149A /* SUNDAY  Personal use.ttf */; };
 		7938DA5D234DBADE0031149A /* Bebas-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7938DA5C234DBADE0031149A /* Bebas-Regular.ttf */; };
 		7938DA67234DBFD10031149A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA66234DBFD10031149A /* NetworkService.swift */; };
-		7938DA69234DCC3B0031149A /* MovieAndSerieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA68234DCC3B0031149A /* MovieAndSerieModel.swift */; };
+		7938DA69234DCC3B0031149A /* MovieAndSerieResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA68234DCC3B0031149A /* MovieAndSerieResponseModel.swift */; };
 		7938DA6B234DCE040031149A /* GlobalVeriables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA6A234DCE040031149A /* GlobalVeriables.swift */; };
 		7938DA6D234DD1640031149A /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA6C234DD1640031149A /* SearchResponseModel.swift */; };
 		7938DA6F234DD29F0031149A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938DA6E234DD29F0031149A /* SearchViewModel.swift */; };
@@ -46,6 +47,7 @@
 		7914332B234E28FA006EAA37 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7914332D234E2B35006EAA37 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		7914332F234E3051006EAA37 /* DetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponseModel.swift; sourceTree = "<group>"; };
+		79143331234F438C006EAA37 /* MovieAndSerieRequeestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAndSerieRequeestModel.swift; sourceTree = "<group>"; };
 		7938DA37234D1C0F0031149A /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7938DA3A234D1C0F0031149A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7938DA3C234D1C0F0031149A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		7938DA58234DBA1C0031149A /* SUNDAY  Personal use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUNDAY  Personal use.ttf"; sourceTree = "<group>"; };
 		7938DA5C234DBADE0031149A /* Bebas-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bebas-Regular.ttf"; sourceTree = "<group>"; };
 		7938DA66234DBFD10031149A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		7938DA68234DCC3B0031149A /* MovieAndSerieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAndSerieModel.swift; sourceTree = "<group>"; };
+		7938DA68234DCC3B0031149A /* MovieAndSerieResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAndSerieResponseModel.swift; sourceTree = "<group>"; };
 		7938DA6A234DCE040031149A /* GlobalVeriables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVeriables.swift; sourceTree = "<group>"; };
 		7938DA6C234DD1640031149A /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
 		7938DA6E234DD29F0031149A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -143,8 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				7938DA6C234DD1640031149A /* SearchResponseModel.swift */,
-				7938DA68234DCC3B0031149A /* MovieAndSerieModel.swift */,
+				7938DA68234DCC3B0031149A /* MovieAndSerieResponseModel.swift */,
 				7914332F234E3051006EAA37 /* DetailResponseModel.swift */,
+				79143331234F438C006EAA37 /* MovieAndSerieRequeestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,13 +360,14 @@
 				79143327234E157F006EAA37 /* ListCell.swift in Sources */,
 				7938DA3F234D1C0F0031149A /* SearchViewController.swift in Sources */,
 				7914332A234E193E006EAA37 /* ListViewModel.swift in Sources */,
+				79143332234F438C006EAA37 /* MovieAndSerieRequeestModel.swift in Sources */,
 				7938DA6F234DD29F0031149A /* SearchViewModel.swift in Sources */,
 				7914332C234E28FA006EAA37 /* DetailViewController.swift in Sources */,
 				7914331D234E0F46006EAA37 /* GlobalFuncs.swift in Sources */,
 				7938DA3B234D1C0F0031149A /* AppDelegate.swift in Sources */,
 				7938DA6D234DD1640031149A /* SearchResponseModel.swift in Sources */,
 				7914331F234E0FC1006EAA37 /* Reachability.swift in Sources */,
-				7938DA69234DCC3B0031149A /* MovieAndSerieModel.swift in Sources */,
+				7938DA69234DCC3B0031149A /* MovieAndSerieResponseModel.swift in Sources */,
 				7938DA67234DBFD10031149A /* NetworkService.swift in Sources */,
 				79143323234E147F006EAA37 /* ListViewController.swift in Sources */,
 				7938DA3D234D1C0F0031149A /* SceneDelegate.swift in Sources */,

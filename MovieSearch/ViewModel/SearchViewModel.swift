@@ -29,11 +29,20 @@ extension SearchViewModel{
             self.delegete?.sendAlertView(view: alert)
             return
         }
-        var segment = "movie"
-        if segmentIndex == 1 {
-            segment = "series"
+        var segment =  ""
+        switch segmentIndex {
+        case 1:
+            segment = "Series"
+        case 0:
+            segment = "Movie"
+        default:
+            segment = ""
         }
-        getSearch(title: title!, year: year!, type: segment, page: "1")
+        var updateYear = "Year"
+        if year != ""{
+            updateYear = year!
+        }
+        getSearch(title: title!, year: updateYear, type: segment, page: "1")
     }
     
     func controlSlider(slider: UISlider, sliderText: UILabel){
@@ -67,15 +76,15 @@ extension SearchViewModel{
                             let data = try! JSONDecoder().decode(SearchResponseModel.self, from: response.data)
                             let vc = StoryBoards.Main.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
                             vc.viewModel.list = data.Search!
-                            vc.viewModel.title = title
-                            vc.viewModel.year = year
-                            vc.viewModel.type = type
+                            let param = MovieAndSerieRequeestModel(title: title, year: year, type: type, page: 2)
+                            vc.viewModel.params = param
                             vc.viewModel.totalResult = Int(data.totalResults!)!
                             self.delegete?.pushNextView(view: vc)
                         }else{
                             let error = json["Error"] as? String
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "Upps!", with: error!)
                             self.delegete?.sendAlertView(view: alert)
+                            logger.error("Error \(error!)")
                         }
                     }
                 }

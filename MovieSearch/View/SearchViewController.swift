@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
     @IBOutlet var yearLabel: UILabel!
     
     lazy var viewModel = SearchViewModel()
-    var segmentIndex = 0
+    var segmentIndex = -1 //Unselected segment control default value
     
     override func viewDidLoad() {
         super.viewDidLoad()
