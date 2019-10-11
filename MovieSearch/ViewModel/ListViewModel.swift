@@ -20,10 +20,13 @@ protocol ListViewModelDelegete {
 class ListViewModel{
     var list = [MovieAndSerieResponseModel]()
     var totalResult = 0
+    var indexForScroll = 1 //Look for new search or just pagination
+    var newSearchIndex = 0 //To understand that a new search has been made
     var delegete: ListViewModelDelegete?
     var indexForSlider = true
     var indexForSegment = true
     var view: UIView?
+    var tableView: UITableView?
     var params: MovieAndSerieRequeestModel?
 }
 
@@ -62,6 +65,7 @@ extension ListViewModel{
     
     //The part that will run when it searches for a new result
     func searcAgain(param: MovieAndSerieRequeestModel){
+        newSearchIndex += 1
         GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
         view?.endEditing(true)
         self.params = param
@@ -102,6 +106,17 @@ extension ListViewModel{
         self.totalResult = Int(totalResult)!
         delegete?.updateUI(data: params!, totalResult: self.totalResult)
     }
+    
+    //Jump to first row when we search new request
+    func scrollToFirstRow(searchIndex: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+            if searchIndex == self.indexForScroll{
+                let indexPath = NSIndexPath(row: 0, section: 0)
+                self.tableView!.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
+                self.indexForScroll += 1
+            }
+        }
+    }
 }
 
 
@@ -119,6 +134,7 @@ extension ListViewModel{
                                 self.list.append(item)
                             }
                             self.setUI(totalResult: data.totalResults!)
+                            self.scrollToFirstRow(searchIndex: self.newSearchIndex)
                         }else{
                             let error = json["Error"] as? String
                             self.setUI(totalResult: "0")
