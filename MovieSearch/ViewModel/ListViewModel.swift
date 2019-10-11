@@ -24,7 +24,6 @@ class ListViewModel{
     var indexForSlider = true
     var indexForSegment = true
     var view: UIView?
-    var tableView: UITableView?
     var params: MovieAndSerieRequeestModel?
 }
 
@@ -101,8 +100,6 @@ extension ListViewModel{
     
     func setUI(totalResult: String){
         self.totalResult = Int(totalResult)!
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView!.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         delegete?.updateUI(data: params!, totalResult: self.totalResult)
     }
 }

@@ -59,7 +59,6 @@ class ListViewController: UIViewController{
     func setViewModel(){
         viewModel.delegete = self
         viewModel.view = view
-        viewModel.tableView = tableView
         viewModel.setUI(totalResult: String(viewModel.totalResult))
     }
 }
