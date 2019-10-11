@@ -16,11 +16,11 @@ class MovieAndSerieRequeestModel{
     public var type: String?
     public var page: Int?
     
+    
     init(title: String?, year: String?, type: String?, page: Int?) {
         self.title = title
         self.year = year
         self.type = type
         self.page = page
     }
-      
 }

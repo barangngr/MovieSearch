@@ -35,8 +35,6 @@ public struct DetailResponseModel: Codable{
         self.Country = Country
         self.Poster = Poster
         self.imdbRating = imdbRating
-      
+        
     }
-    
-    
 }

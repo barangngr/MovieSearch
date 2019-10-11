@@ -23,6 +23,7 @@ class ListViewController: UIViewController{
     
     //MARK: Veriables
     lazy var viewModel = ListViewModel()
+    var cellHeights: [IndexPath:CGFloat] = [:]
     
     //MARK:
     override func viewDidLoad() {
@@ -58,6 +59,7 @@ class ListViewController: UIViewController{
     func setViewModel(){
         viewModel.delegete = self
         viewModel.view = view
+        viewModel.tableView = tableView
         viewModel.setUI(totalResult: String(viewModel.totalResult))
     }
 }
@@ -88,6 +90,11 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewModel.checkBeginFetch(tableView: tableView, indexPath: indexPath)
+        cellHeights[indexPath] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath] ?? 190
     }
     
 }

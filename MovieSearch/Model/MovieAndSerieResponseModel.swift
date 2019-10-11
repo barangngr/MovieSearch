@@ -15,7 +15,7 @@ public struct MovieAndSerieResponseModel: Codable{
     public var imdbID: String?
     public var `Type`: String?
     public var Poster: String?
-  
+    
     
     public init(Title: String?, Year: String?, imdbID: String?, Type: String?, Poster: String?){
         self.Title = Title
@@ -23,8 +23,6 @@ public struct MovieAndSerieResponseModel: Codable{
         self.imdbID = imdbID
         self.Type = Type
         self.Poster = Poster
-      
+        
     }
-    
-    
 }

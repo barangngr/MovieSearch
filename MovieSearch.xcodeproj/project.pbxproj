@@ -111,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				79D188C9234DE3A60000C31F /* Extensions */,
+				79DD3FDB2350D0AC00B79C5F /* Globals */,
 				7938DA63234DBF5C0031149A /* Services */,
 				7938DA5F234DBE7F0031149A /* Model */,
 				7938DA60234DBE880031149A /* ViewModel */,
@@ -187,8 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				7938DA66234DBFD10031149A /* NetworkService.swift */,
-				7938DA6A234DCE040031149A /* GlobalVeriables.swift */,
-				7914331C234E0F46006EAA37 /* GlobalFuncs.swift */,
 				7914331E234E0FC1006EAA37 /* Reachability.swift */,
 			);
 			path = Services;
@@ -201,6 +200,15 @@
 				79143320234E1350006EAA37 /* UIViewController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79DD3FDB2350D0AC00B79C5F /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				7914331C234E0F46006EAA37 /* GlobalFuncs.swift */,
+				7938DA6A234DCE040031149A /* GlobalVeriables.swift */,
+			);
+			path = Globals;
 			sourceTree = "<group>";
 		};
 		97F18C16D653F91CBD772B82 /* Pods */ = {

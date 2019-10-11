@@ -24,6 +24,7 @@ class ListViewModel{
     var indexForSlider = true
     var indexForSegment = true
     var view: UIView?
+    var tableView: UITableView?
     var params: MovieAndSerieRequeestModel?
 }
 
@@ -59,7 +60,7 @@ extension ListViewModel{
             button.setTitle("Series", for: .normal)
         }
     }
-        
+    
     //The part that will run when it searches for a new result
     func searcAgain(param: MovieAndSerieRequeestModel){
         GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
@@ -100,6 +101,8 @@ extension ListViewModel{
     
     func setUI(totalResult: String){
         self.totalResult = Int(totalResult)!
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView!.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         delegete?.updateUI(data: params!, totalResult: self.totalResult)
     }
 }
@@ -135,5 +138,5 @@ extension ListViewModel{
         }
     }
 }
-    
+
 
