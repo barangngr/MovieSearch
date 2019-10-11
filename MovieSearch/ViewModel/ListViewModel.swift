@@ -20,10 +20,9 @@ protocol ListViewModelDelegete {
 
 class ListViewModel{
     var list = [MovieAndSerieResponseModel]()
-    var params : MovieAndSerieRequeestModel?
+    var params: MovieAndSerieRequeestModel?
     var totalResult = 0
     var delegete: ListViewModelDelegete?
-    var fetchingMore = false
     var indexForSlider = true
     var indexForSegment = true
 }
@@ -76,18 +75,15 @@ extension ListViewModel{
         }
     }
     
-    
-    func readyForFetch(offSetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat){
-        if offSetY > contentHeight - scrollViewHeight/2{
-            if !fetchingMore && list.count <= totalResult-1{
-                beginFetch()
-            }
+    func checkBeginFetch(lastSectionIndex: Int, lastRowIndex: Int, indexPath: IndexPath){
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && list.count < totalResult{
+            beginFetch()
         }
+        
     }
     
     func beginFetch(){
-        fetchingMore = true
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.params?.page! += 1
             switch self.params!.type {
             case "Type":
@@ -95,7 +91,6 @@ extension ListViewModel{
             default:
                 self.getSearchWithType(param: self.params!)
             }
-            self.fetchingMore = false
         }
     }
     

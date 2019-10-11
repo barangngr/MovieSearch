@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DetailViewModelDelegete {
     func updateView(data: DetailResponseModel)
@@ -15,7 +16,8 @@ protocol DetailViewModelDelegete {
 
 class DetailViewModel{
     var id: String = ""
-    var delegete : DetailViewModelDelegete?
+    var delegete: DetailViewModelDelegete?
+    var view: UIView?
 }
 
 
@@ -29,11 +31,13 @@ extension DetailViewModel{
 //MARK: Network Functions
 extension DetailViewModel{
     func getDetails(){
+        GlobalFuncs.shared.showActivityIndicatory(uiView: self.view!)
         service.request(.getDetail(id: id)) { (result) in
             switch result{
             case .success(let response):
                 let data = try! JSONDecoder().decode(DetailResponseModel.self, from: response.data)
                 self.changeData(data: data)
+                GlobalFuncs.shared.closeActivityIndicatory(uiView: self.view!)
             case .failure(let error):
                 logger.error("Error \(error)")
             }

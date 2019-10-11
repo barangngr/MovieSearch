@@ -12,6 +12,7 @@ import UIKit
 class GlobalFuncs{
     
     static let shared = GlobalFuncs()
+    let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     var reachability: Reachability?
     
     
@@ -52,5 +53,18 @@ class GlobalFuncs{
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { alert.addAction($0) }
         return alert
+    }
+    
+    func showActivityIndicatory(uiView: UIView) {
+        actInd.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
+        actInd.center = uiView.center
+        actInd.hidesWhenStopped = true
+        actInd.style = UIActivityIndicatorView.Style.whiteLarge
+        uiView.addSubview(actInd)
+        actInd.startAnimating()
+    }
+    
+    func closeActivityIndicatory(uiView: UIView) {
+        actInd.stopAnimating()
     }
 }

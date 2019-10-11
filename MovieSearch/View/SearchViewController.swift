@@ -23,6 +23,7 @@ class SearchViewController: UIViewController {
         hideNavigationBar()
         setNavBarBackBtn()
         viewModel.delegete = self
+        viewModel.view = view
     }
     
     @IBAction func segmentAction(_ sender: UISegmentedControl) {

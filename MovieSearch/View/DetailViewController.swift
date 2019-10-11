@@ -29,8 +29,10 @@ class DetailViewController: UIViewController{
         super.viewDidLoad()
         hideNavigationBar()
         setNavBarBackBtn()
+        viewModel.view = view
         viewModel.getDetails()
         viewModel.delegete = self
+        
     }
     
     

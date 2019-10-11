@@ -18,6 +18,7 @@ protocol SearchViewModelDelegete {
 class SearchViewModel{
     var index = true //For 'Select Year' button to hide slider and label.
     var delegete: SearchViewModelDelegete?
+    var view: UIView?
 }
 
 
@@ -42,6 +43,7 @@ extension SearchViewModel{
         if year != ""{
             updateYear = year!
         }
+        GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
         getSearch(title: title!, year: updateYear, type: segment, page: "1")
     }
     
@@ -70,6 +72,7 @@ extension SearchViewModel{
         service.request(.getSearch(title: title, year: year, type: type, page: page)) { (result) in
             switch result{
             case .success(let response):
+                GlobalFuncs.shared.closeActivityIndicatory(uiView: self.view!)
                 if let json = try! JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any]{
                     if let names = json["Response"] as? String{
                         if names == "True"{

@@ -79,10 +79,11 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         viewModel.pushDetailView(index: indexPath.row)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offSetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        viewModel.readyForFetch(offSetY: offSetY, contentHeight: contentHeight, scrollViewHeight: scrollView.contentSize.height)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections-1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex)-1
+        
+        viewModel.checkBeginFetch(lastSectionIndex: lastSectionIndex, lastRowIndex: lastRowIndex, indexPath: indexPath)
     }
     
 }
