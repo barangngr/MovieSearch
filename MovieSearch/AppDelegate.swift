@@ -19,6 +19,10 @@ var window : UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 1.0)
         SwiftyBeaver.setupConsole()
+        let platform = SBPlatformDestination(appID: "Ybn1JL",
+                                             appSecret: "Nq5o8egnu7alExxQlafvhqsvfxsqRuwh",
+                                             encryptionKey: "jg3W5fgB8qnjymHs9TrjfjoykywryBXv")
+        SwiftyBeaver.addDestination(platform)
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         // Override point for customization after application launch.

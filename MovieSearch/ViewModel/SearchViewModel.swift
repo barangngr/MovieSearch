@@ -33,6 +33,7 @@ extension SearchViewModel{
         let segment = checktype(segmentIndex: segmentIndex)
         let year = checkyear(year: year!)
         GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
+        logger.info("Searching Word Info ==> Title: \(title!) Year: \(year) Type: \(segment)")
         getSearch(title: title!, year: year, type: segment, page: "1")
     }
     
@@ -94,12 +95,12 @@ extension SearchViewModel{
                             let error = json["Error"] as? String
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "Upps!", with: error!)
                             self.delegete?.sendAlertView(view: alert)
-                            logger.error("Error \(error!)")
+                            logger.error("ErrorText: \(error!) /nParams=> Title: \(title) Year: \(year) Type: \(type) Page: \(page)")
                         }
                     }
                 }
             case .failure(let error):
-                logger.error("Error \(error)")
+                logger.error("Error: \(error) /nRequest Fail.")
             }
         }
     }
