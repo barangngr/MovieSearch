@@ -10,28 +10,27 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //MARK: IBOutlets
     @IBOutlet var segmentControl: UISegmentedControl!
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var yearSlider: UISlider!
     @IBOutlet var yearLabel: UILabel!
     
+    //MARK: Veriables
     lazy var viewModel = SearchViewModel()
     var segmentIndex = -1 //Unselected segment control default value
     
+    //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavigationBar()
         setNavBarBackBtn()
-        viewModel.delegete = self
-        viewModel.view = view
+        setViewModel()
     }
     
+    //MARK: IBActions
     @IBAction func segmentAction(_ sender: UISegmentedControl) {
         segmentIndex = segmentControl.selectedSegmentIndex
-    }
-    
-    @IBAction func searchButton(_ sender: UIButton) {
-        viewModel.controlParameters(title: searchTextField.text, segmentIndex: segmentIndex, year: yearLabel.text)
     }
     
     @IBAction func selectYearButton(_ sender: UIButton) {
@@ -40,6 +39,17 @@ class SearchViewController: UIViewController {
     
     @IBAction func yearSliderAction(_ sender: UISlider) {
         yearLabel.text = String(Int(yearSlider.value))
+    }
+    
+    @IBAction func searchButton(_ sender: UIButton) {
+        viewModel.controlParameters(title: searchTextField.text, segmentIndex: segmentIndex, year: yearLabel.text)
+    }
+    
+    //MARK: Functions
+    func setViewModel(){
+        viewModel.delegete = self
+        viewModel.view = view
+        viewModel.checkNetworkConnection()
     }
 }
 

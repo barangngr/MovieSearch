@@ -13,21 +13,21 @@ import UIKit
 protocol ListViewModelDelegete {
     func pushNextView(view:UIViewController)
     func sendAlertView(view: UIAlertController)
-    func reloadTableView()
     func updateUI(data: MovieAndSerieRequeestModel, totalResult: Int)
 }
 
 
 class ListViewModel{
     var list = [MovieAndSerieResponseModel]()
-    var params: MovieAndSerieRequeestModel?
     var totalResult = 0
     var delegete: ListViewModelDelegete?
     var indexForSlider = true
     var indexForSegment = true
+    var view: UIView?
+    var params: MovieAndSerieRequeestModel?
 }
 
-
+//MARK: Functions
 extension ListViewModel{
     func pushDetailView(index: Int){
         let vc = StoryBoards.Main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
@@ -59,47 +59,48 @@ extension ListViewModel{
             button.setTitle("Series", for: .normal)
         }
     }
-    
-    func setUI(){
-        delegete?.updateUI(data: params!, totalResult: totalResult)
-    }
-    
+        
+    //The part that will run when it searches for a new result
     func searcAgain(param: MovieAndSerieRequeestModel){
+        view?.endEditing(true)
+        self.params = param
         self.list.removeAll()
-        delegete?.reloadTableView()
-        switch params!.type {
-        case "Type":
-            getSearchWithoutType(param: params!)
-        default:
-            getSearchWithType(param: params!)
-        }
+        getSearch(typeOrNo: (params?.type!)!)
     }
     
-    func checkBeginFetch(lastSectionIndex: Int, lastRowIndex: Int, indexPath: IndexPath){
+    //Check before pagination process
+    func checkBeginFetch(tableView: UITableView, indexPath: IndexPath){
+        let lastSectionIndex = tableView.numberOfSections-1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex)-1
         if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && list.count < totalResult{
             beginFetch()
         }
-        
     }
     
+    //Call to request method
     func beginFetch(){
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.params?.page! += 1
-            switch self.params!.type {
-            case "Type":
-                self.getSearchWithoutType(param: self.params!)
-            default:
-                self.getSearchWithType(param: self.params!)
-            }
+            self.getSearch(typeOrNo: (self.params?.type!)!)
         }
     }
     
-    func reload(result: String){
-        self.totalResult = Int(result)!
-        self.setUI()
-        self.delegete?.reloadTableView()
-    }
+    func getSearch(typeOrNo: String){
+           switch params!.type {
+           case "Type":
+//               getSearchWithoutType(param: params!)
+            let str = String()
+            params!.type = str
+            getSearchWithType(param: params!)
+           default:
+               getSearchWithType(param: params!)
+           }
+       }
     
+    func setUI(totalResult: String){
+        self.totalResult = Int(totalResult)!
+        delegete?.updateUI(data: params!, totalResult: self.totalResult)
+    }
 }
 
 
@@ -116,7 +117,7 @@ extension ListViewModel{
                             for item in data.Search!{
                                 self.list.append(item)
                             }
-                            self.reload(result: data.totalResults!)
+                            self.setUI(totalResult: data.totalResults!)
                         }else{
                             let error = json["Error"] as? String
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "We don't find!", with: error!)
@@ -142,7 +143,7 @@ extension ListViewModel{
                             for item in data.Search!{
                                 self.list.append(item)
                             }
-                            self.reload(result: data.totalResults!)
+                            self.setUI(totalResult: data.totalResults!)
                         }else{
                             let error = json["Error"] as? String
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "We don't find!", with: error!)

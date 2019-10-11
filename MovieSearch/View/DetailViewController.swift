@@ -11,6 +11,7 @@ import Kingfisher
 
 class DetailViewController: UIViewController{
     
+    //MARK: IBOutlets
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var posterTitle: UILabel!
     @IBOutlet var genreLabel: UILabel!
@@ -23,22 +24,24 @@ class DetailViewController: UIViewController{
     @IBOutlet var writerLabel: UILabel!
     @IBOutlet var actorsLabel: UILabel!
     
+    //MARK: Veriables
     lazy var viewModel = DetailViewModel()
    
+    //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavigationBar()
         setNavBarBackBtn()
+        setViewModel()
+    }
+    
+    //MARK: Functions
+    func setViewModel(){
         viewModel.view = view
         viewModel.getDetails()
         viewModel.delegete = self
-        
     }
-    
-    
-    
 }
-
 
 
 extension DetailViewController: DetailViewModelDelegete{

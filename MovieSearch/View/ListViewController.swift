@@ -11,6 +11,7 @@ import Kingfisher
 
 class ListViewController: UIViewController{
     
+    //MARK: IBOutlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var yearButtonOutlet: UIButton!
@@ -20,23 +21,24 @@ class ListViewController: UIViewController{
     @IBOutlet var typeSegmentOutlet: UISegmentedControl!
     @IBOutlet var searchImage: UIImageView!
     
+    //MARK: Veriables
     lazy var viewModel = ListViewModel()
     
+    //MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: "ListCell")
         tableView.separatorStyle = .none
-        viewModel.delegete = self
-        viewModel.setUI()
+        setViewModel()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         searchImage.isUserInteractionEnabled = true
         searchImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    //MARK: IBActions
     @IBAction func filterButtons(_ sender: UIButton) {
         viewModel.selectObject(button: sender, objectSlider: yearSliderOutlet, objectSegment: typeSegmentOutlet)
-    
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
@@ -47,11 +49,16 @@ class ListViewController: UIViewController{
         viewModel.controlTypeButton(button: typeButtonOutlet, segment: sender)
     }
     
+    //MARK: Functions
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         let param = MovieAndSerieRequeestModel(title: titleTextField.text, year: yearButtonOutlet.titleLabel?.text, type: typeButtonOutlet.titleLabel?.text, page: 1)
-        viewModel.params = param
         viewModel.searcAgain(param: param)
-        view.endEditing(true)
+    }
+    
+    func setViewModel(){
+        viewModel.delegete = self
+        viewModel.view = view
+        viewModel.setUI(totalResult: String(viewModel.totalResult))
     }
 }
 
@@ -80,10 +87,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections-1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex)-1
-        
-        viewModel.checkBeginFetch(lastSectionIndex: lastSectionIndex, lastRowIndex: lastRowIndex, indexPath: indexPath)
+        viewModel.checkBeginFetch(tableView: tableView, indexPath: indexPath)
     }
     
 }
@@ -98,12 +102,9 @@ extension ListViewController: ListViewModelDelegete{
         titleTextField.text = data.title!
         yearButtonOutlet.setTitle(data.year!, for: .normal)
         totalResultLabel.text = "Total Result: \(String(totalResult))"
-    }
-    
-    func reloadTableView() {
         tableView.reloadData()
     }
-    
+        
     func pushNextView(view: UIViewController) {
         navigationController?.pushViewController(view, animated: true)
     }

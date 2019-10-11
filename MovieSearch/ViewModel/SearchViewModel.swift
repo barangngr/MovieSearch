@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 protocol SearchViewModelDelegete {
     func sendAlertView(view: UIAlertController)
     func pushNextView(view:UIViewController)
@@ -21,30 +22,36 @@ class SearchViewModel{
     var view: UIView?
 }
 
-
+//MARK: Functions
 extension SearchViewModel{
     func controlParameters(title: String?, segmentIndex: Int, year: String?){
-        checkNetworkConnection()
         guard title != "" else {
             let alert = GlobalFuncs.shared.showErrorAlert(with: "Upps!", with: "Title is Empty.")
             self.delegete?.sendAlertView(view: alert)
             return
         }
-        var segment =  ""
+        let segment = checktype(segmentIndex: segmentIndex)
+        let year = checkyear(year: year!)
+        GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
+        getSearch(title: title!, year: year, type: segment, page: "1")
+    }
+    
+    func checktype(segmentIndex: Int)->String{
         switch segmentIndex {
         case 1:
-            segment = "Series"
+            return "Series"
         case 0:
-            segment = "Movie"
+            return "Movie"
         default:
-            segment = ""
+            return ""
         }
-        var updateYear = "Year"
+    }
+    
+    func checkyear(year: String)->String{
         if year != ""{
-            updateYear = year!
+            return year
         }
-        GlobalFuncs.shared.showActivityIndicatory(uiView: view!)
-        getSearch(title: title!, year: updateYear, type: segment, page: "1")
+        return "Year"
     }
     
     func controlSlider(slider: UISlider, sliderText: UILabel){
