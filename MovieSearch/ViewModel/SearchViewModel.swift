@@ -95,12 +95,12 @@ extension SearchViewModel{
                             let error = json["Error"] as? String
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "Upps!", with: error!)
                             self.delegete?.sendAlertView(view: alert)
-                            logger.error("ErrorText: \(error!) /nParams=> Title: \(title) Year: \(year) Type: \(type) Page: \(page)")
+                            logger.error("ErrorText: \(error!) Params ==> Title: \(title) Year: \(year) Type: \(type) Page: \(page)")
                         }
                     }
                 }
             case .failure(let error):
-                logger.error("Error: \(error) /nRequest Fail.")
+                logger.error("Error: \(error) => Request Fail.")
             }
         }
     }

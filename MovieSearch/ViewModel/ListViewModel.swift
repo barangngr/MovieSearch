@@ -67,7 +67,7 @@ extension ListViewModel{
         self.params = param
         self.list.removeAll()
         getSearch(typeOrNo: (params?.type!)!)
-        logger.info("Searching Word Info = /nTitle: \(param.title!) Year: \(param.year!) Type: \(param.type!) Page: \(param.page!) ")
+        logger.info("Searching Word Info ==> Title: \(param.title!) Year: \(param.year!) Type: \(param.type!) Page: \(param.page!) ")
     }
     
     //Check before pagination process
@@ -81,7 +81,7 @@ extension ListViewModel{
     
     //Call to request method
     func beginFetch(){
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.params?.page! += 1
             self.getSearch(typeOrNo: (self.params?.type!)!)
         }
@@ -124,13 +124,13 @@ extension ListViewModel{
                             self.setUI(totalResult: "0")
                             let alert = GlobalFuncs.shared.showErrorAlert(with: "We don't find!", with: error!)
                             self.delegete?.sendAlertView(view: alert)
-                            logger.error("ErrorText: \(error!) /nParams=> Title: \(param.title!) Year: \(param.year!) Type: \(param.type!) Page: \(param.page!)")
+                            logger.error("ErrorText: \(error!) Params ==> Title: \(param.title!) Year: \(param.year!) Type: \(param.type!) Page: \(param.page!)")
                         }
                     }
                 }
                 GlobalFuncs.shared.closeActivityIndicatory(uiView: self.view!)
             case .failure(let error):
-                logger.error("Error: \(error) /nRequest Fail.")
+                logger.error("Error: \(error) => Request Fail.")
             }
         }
     }
